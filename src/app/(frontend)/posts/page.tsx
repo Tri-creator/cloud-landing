@@ -1,10 +1,9 @@
 import type { Metadata } from 'next/types'
 
-import { CollectionArchive } from '@/components/CollectionArchive'
-import { PageRange } from '@/components/PageRange'
-import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
+import Link from 'next/link'
+import { Media } from '@/components/Media'
 import React from 'react'
 import PageClient from './page.client'
 
@@ -17,47 +16,64 @@ export default async function Page() {
   const posts = await payload.find({
     collection: 'posts',
     depth: 1,
-    limit: 12,
+    limit: 100,
+    sort: '-publishedAt',
     overrideAccess: false,
     select: {
       title: true,
       slug: true,
-      categories: true,
       meta: true,
+      heroImage: true,
+      publishedAt: true,
     },
   })
 
   return (
-    <div className="pt-24 pb-24">
+    <main className="all-news-list-page">
       <PageClient />
-      <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
+
+      <section className="container">
+        <div className="all-news-list-header">
+          <span className="section-badge">NEWS</span>
+          <h1>View All News</h1>
         </div>
-      </div>
 
-      <div className="container mb-8">
-        <PageRange
-          collection="posts"
-          currentPage={posts.page}
-          limit={12}
-          totalDocs={posts.totalDocs}
-        />
-      </div>
+        <div className="all-news-list">
+          {posts.docs.map((post) => {
+            const date = post.publishedAt ? new Date(post.publishedAt) : null
 
-      <CollectionArchive posts={posts.docs} />
+            return (
+              <Link href={`/posts/${post.slug}`} className="all-news-list-item" key={post.id}>
+                <div className="all-news-list-image">
+                  {post.heroImage && typeof post.heroImage !== 'string' && (
+                    <Media resource={post.heroImage} size="33vw" />
+                  )}
+                </div>
 
-      <div className="container">
-        {posts.totalPages > 1 && posts.page && (
-          <Pagination page={posts.page} totalPages={posts.totalPages} />
-        )}
-      </div>
-    </div>
+                <div className="all-news-list-content">
+                  <h2>{post.title}</h2>
+
+                  {date && (
+                    <div className="all-news-list-date">
+                      {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}
+                    </div>
+                  )}
+
+                  {post.meta?.description && <p>{post.meta.description}</p>}
+
+                  <span className="all-news-readmore">Xem thêm</span>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+    </main>
   )
 }
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Payload Website Template Posts`,
+    title: 'View All News',
   }
 }

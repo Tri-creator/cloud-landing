@@ -49,9 +49,14 @@ export const Footer: GlobalConfig = {
               fields: [
                 {
                   name: 'title',
-                  type: 'text',
+                  type: 'textarea',
                   localized: true,
                   required: true,
+                },
+                {
+                  name: 'content',
+                  type: 'textarea',
+                  localized: true,
                 },
                 {
                   name: 'links',

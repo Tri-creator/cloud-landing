@@ -4,6 +4,7 @@ import { t } from '@/i18n/translations'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 
+
 // ─── Social icon map ─────────────────────────────────────────────────────────
 
 const SocialIcon: React.FC<{ platform: string }> = ({ platform }) => {
@@ -105,6 +106,7 @@ export async function Footer() {
               {columns.map((col, colIdx) => (
                 <div key={colIdx} className="vcv-footer-col">
                   <h4 className="vcv-footer-col-title">{col.title}</h4>
+                  {col.content && (<div className="vcv-footer-content">{col.content}</div>)}
                   {(col.links || []).map(({ link: linkData }, linkIdx) => (
                     <CMSLink key={linkIdx} className="vcv-footer-link" {...linkData} />
                   ))}

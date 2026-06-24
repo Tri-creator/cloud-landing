@@ -1,6 +1,6 @@
 import React from 'react'
 import type { FeaturesBlock as FeaturesBlockType } from '@/payload-types'
-
+import CloudCameraDiagram from '@/components/CloudCameraDiagram'
 const ICON_MAP: Record<string, React.ReactNode> = {
   camera: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
@@ -61,7 +61,7 @@ export const FeaturesBlockComponent: React.FC<FeaturesBlockType & { disableInner
   features,
 }) => {
   return (
-    <section className="features-section py-24">
+    <section id ="why-vcv" className="features-section py-24">
       <div className="container">
         {/* Section header */}
         <div className="section-header text-center mb-16">
@@ -85,6 +85,11 @@ export const FeaturesBlockComponent: React.FC<FeaturesBlockType & { disableInner
           </div>
         )}
       </div>
+      <div className="mt-24">
+      <CloudCameraDiagram />
+    </div>
     </section>
+    
   )
+  
 }

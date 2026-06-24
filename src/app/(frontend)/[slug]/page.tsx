@@ -14,7 +14,9 @@ import type { Locale } from '@/i18n/config'
 import { getLocale } from '@/i18n/getLocale'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
-
+import { NewsSection } from '@/blocks/NewsSection/Component'
+import { CustomerLogos } from '@/blocks/CustomerLogos/Component'
+import SiteHeader from '@/components/SiteHeader'
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
   const pages = await payload.find({
@@ -72,14 +74,15 @@ export default async function Page({ params: paramsPromise }: Readonly<Args>) {
 
   return (
     <article>
+       <SiteHeader />
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
-
       {draft && <LivePreviewListener />}
-
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
+      <NewsSection />
+      <CustomerLogos />
     </article>
   )
 }

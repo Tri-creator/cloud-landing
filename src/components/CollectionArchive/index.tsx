@@ -1,31 +1,35 @@
 import { cn } from '@/utilities/ui'
 import React from 'react'
+import Link from 'next/link'
+import { Media } from '@/components/Media'
 
-import { Card, CardPostData } from '@/components/Card'
+import type { Post } from '@/payload-types'
 
 export type Props = {
-  posts: CardPostData[]
+  posts: Post[]
 }
 
-export const CollectionArchive: React.FC<Props> = (props) => {
-  const { posts } = props
-
+export const CollectionArchive: React.FC<Props> = ({ posts }) => {
   return (
     <div className={cn('container')}>
-      <div>
-        <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8">
-          {posts?.map((result, index) => {
-            if (typeof result === 'object' && result !== null) {
-              return (
-                <div className="col-span-4" key={index}>
-                  <Card className="h-full" doc={result} relationTo="posts" showCategories />
-                </div>
-              )
-            }
+      <div className="all-news-grid">
+        {posts?.map((post) => {
+          if (typeof post !== 'object' || post === null) return null
 
-            return null
-          })}
-        </div>
+          return (
+            <Link href={`/posts/${post.slug}`} className="all-news-card" key={post.id}>
+              <div className="all-news-image">
+                {post.heroImage && typeof post.heroImage !== 'string' && (
+                  <Media resource={post.heroImage} size="33vw" />
+                )}
+              </div>
+
+              <h2>{post.title}</h2>
+
+              {post.meta?.description && <p>{post.meta.description}</p>}
+            </Link>
+          )
+        })}
       </div>
     </div>
   )

@@ -21,8 +21,8 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
       heading: 'See Everything.\nMiss Nothing.',
       subheading:
         'Professional-grade cloud security cameras with AI-powered person & vehicle detection, unlimited cloud storage, and instant mobile alerts — all managed from one dashboard.',
-      primaryCTA: { label: 'Shop Now', href: '#products' },
-      secondaryCTA: { label: 'Watch Demo', href: '#demo' },
+      primaryCTA: { label: 'Shop Now', href: '#why-vcv' },
+      secondaryCTA: { label: 'Watch Demo', href: '/demo' },
       stats: [
         { value: '10M+', label: 'Cameras Sold' },
         { value: '99.9%', label: 'Uptime SLA' },
@@ -89,17 +89,6 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
       ],
     },
     // Products
-    {
-      blockType: 'productsShowcase',
-      badge: 'Our Cameras',
-      heading: 'Find the perfect camera for you',
-      subheading: 'From indoor monitoring to weatherproof outdoor surveillance — we have a camera built for every scenario.',
-      displayMode: 'grid',
-      showFeaturedOnly: false,
-      maxProducts: 6,
-      ctaLabel: 'View All Products',
-      ctaHref: '/products',
-    },
     // Pricing
     {
       blockType: 'pricing',
@@ -208,5 +197,6 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
         },
       ],
     },
+    
   ],
 }

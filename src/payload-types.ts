@@ -2084,6 +2084,7 @@ export interface Footer {
   columns?:
     | {
         title: string;
+        content?: string | null;
         links?:
           | {
               link: {
@@ -2396,6 +2397,7 @@ export interface FooterSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        content?: T;
         links?:
           | T
           | {

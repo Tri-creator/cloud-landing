@@ -15,6 +15,36 @@ const ICONS = {
     </svg>
   ),
 }
+const AnimatedStatValue = ({ value }: { value: string }) => {
+  const [count, setCount] = useState(0)
+  const number = parseFloat(value.replace(/[^0-9.]/g, '')) || 0
+  const prefix = value.startsWith('$') ? '$' : '' 
+  const suffix = value.replace(/[0-9.]/g, '')
+  
+  useEffect(() => {
+    let start = 0
+    const duration = 100
+    const step = number / (duration / 1)
+    const timer = setInterval(() => {
+      start += step
+      if (start >= number) {
+        setCount(number)
+        clearInterval(timer)
+      } else {
+        setCount(start)
+      }
+    }, 16)
+    return () => clearInterval(timer)
+  }, [number])
+  const display = value.includes('.') ? count.toFixed(1) : Math.floor(count).toString()
+  return (
+  <>
+      {prefix}
+      {display}
+      {suffix}
+    </>
+  )
+}
 
 export const HeroBannerComponent: React.FC<HeroBannerBlockType & { disableInnerContainer?: boolean }> = ({
   badge,
@@ -31,9 +61,8 @@ export const HeroBannerComponent: React.FC<HeroBannerBlockType & { disableInnerC
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
   return (
-    <section className="hero-banner relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="hero-banner relative min-h-screen flex items-center overflow-hidden">
       {/* Animated background */}
       <div className="hero-bg absolute inset-0" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
         <div className="hero-gradient absolute inset-0" />
@@ -71,12 +100,21 @@ export const HeroBannerComponent: React.FC<HeroBannerBlockType & { disableInnerC
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20 animate-fade-in-up animation-delay-300">
             {primaryCTA?.label && (
-              <Link href={primaryCTA.href || '#'} className="btn-primary-hero group">
+              <button
+                type="button"
+                className="btn-primary-hero group"
+                onClick={() => {
+                  document.getElementById('why-vcv')?.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start',
+                  })
+                }}
+              >
                 {primaryCTA.label}
                 <span className="group-hover:translate-x-1 transition-transform duration-200">
                   {ICONS.arrowRight}
                 </span>
-              </Link>
+              </button>
             )}
             {secondaryCTA?.label && (
               <Link href={secondaryCTA.href || '#'} className="btn-secondary-hero group">
@@ -91,7 +129,11 @@ export const HeroBannerComponent: React.FC<HeroBannerBlockType & { disableInnerC
             <div className="hero-stats-grid animate-fade-in-up animation-delay-400">
               {stats.map((stat, i) => (
                 <div key={i} className="hero-stat-item">
-                  <div className="hero-stat-value">{stat.value}</div>
+                  <div className="hero-stat-value">
+                    {stat.value === '24/7' ? ('24/7') : (
+                      <AnimatedStatValue value={stat.value} />
+                    )}
+                  </div>
                   <div className="hero-stat-label">{stat.label}</div>
                 </div>
               ))}

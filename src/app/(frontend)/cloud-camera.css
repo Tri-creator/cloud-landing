@@ -456,7 +456,7 @@ body {
 /* ============================================
    PRICING BLOCK
    ============================================ */
-.pricing-section { background: #060d1f; }
+.pricing-section { background: #060d1f; padding: 120px 0; }
 
 .billing-toggle-wrapper {
   display: flex;
