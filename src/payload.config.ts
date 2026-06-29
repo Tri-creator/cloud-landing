@@ -17,7 +17,7 @@ import { Header } from './Header/config'
 import { Layout } from './Layout/config'
 import { plugins } from './plugins'
 import { getServerSideURL } from './utilities/getURL'
-
+import { Events } from './collections/Events'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -73,7 +73,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Products, Testimonials],
+  collections: [Pages, Posts, Media, Categories, Users, Products, Testimonials, Events,],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer, Layout],
   plugins,

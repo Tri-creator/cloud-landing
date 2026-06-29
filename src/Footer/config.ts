@@ -114,6 +114,7 @@ export const Footer: GlobalConfig = {
               localized: true,
               defaultValue: '© {year} VCV Cloud. All rights reserved.',
               admin: { description: 'Use {year} as a placeholder for the current year.' },
+              
             },
           ],
         },

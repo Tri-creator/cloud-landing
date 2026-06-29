@@ -16,6 +16,7 @@ const translations = {
     'nav.pricing': 'Pricing',
     'nav.about': 'About',
     'nav.contact': 'Contact',
+    
 
     // Footer
     'footer.tagline': 'Professional cloud security cameras — smarter security, always on.',

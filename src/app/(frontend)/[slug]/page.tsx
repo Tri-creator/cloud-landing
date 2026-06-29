@@ -17,6 +17,8 @@ import PageClient from './page.client'
 import { NewsSection } from '@/blocks/NewsSection/Component'
 import { CustomerLogos } from '@/blocks/CustomerLogos/Component'
 import SiteHeader from '@/components/SiteHeader'
+import { FAQBlock } from '@/blocks/FAQBlock/config'
+import { EventSection } from '@/blocks/EventsSection/Component'
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
   const pages = await payload.find({
@@ -80,9 +82,12 @@ export default async function Page({ params: paramsPromise }: Readonly<Args>) {
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
-      <NewsSection />
+      
+      <RenderBlocks blocks={layout.filter((block) => block.blockType !== 'faq')} />
       <CustomerLogos />
+      <EventSection/>
+      <NewsSection />
+      <RenderBlocks blocks={layout.filter((block) => block.blockType === 'faq')} />
     </article>
   )
 }

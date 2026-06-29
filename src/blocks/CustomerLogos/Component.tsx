@@ -1,3 +1,8 @@
+'use client'
+
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
+
 const logos = [
   '/clients/1.png',
   '/clients/2.png',
@@ -9,22 +14,57 @@ const logos = [
 ]
 
 export const CustomerLogos = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'start',
+    },
+    [
+      Autoplay({
+        delay: 3000,
+        stopOnInteraction: false,
+      }),
+    ],
+  )
+
   return (
-    <section className="customer-logos-section">
+    <section id="customers" className="customer-logos-section">
       <div className="container">
         <div className="section-header text-center mb-12">
-          <span className="section-badge mb-4">CUSTOMERS</span>
-            <h2 className="customer-title">KHÁCH HÀNG CỦA VCV</h2>
-
-            <div className="customer-marquee">
-                <div className="customer-track">
-                    {[...logos, ...logos].map((logo, index) => (
-                        <div key={index} className="customer-logo">
-                <img src={logo} alt="" />
-              </div>
-            ))}
-          </div>
+          <span className="section-badge mb-4">Customers</span>
+          <h2 className="section-heading mb-4">
+            KHÁCH HÀNG CỦA VCV
+          </h2>
         </div>
+
+        <div className="customer-slider">
+
+          <button
+            className="customer-arrow customer-arrow-left"
+            onClick={() => emblaApi?.scrollPrev()}
+          >
+            ❮
+          </button>
+
+          <div className="embla" ref={emblaRef}>
+            <div className="embla__container">
+              {logos.map((logo, index) => (
+                <div className="embla__slide" key={index}>
+                  <div className="customer-logo">
+                    <img src={logo} alt="" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            className="customer-arrow customer-arrow-right"
+            onClick={() => emblaApi?.scrollNext()}
+          >
+            ❯
+          </button>
+
         </div>
       </div>
     </section>

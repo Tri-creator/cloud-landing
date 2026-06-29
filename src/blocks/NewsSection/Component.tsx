@@ -33,7 +33,7 @@ export const NewsSection = async () => {
       </div>
       <div className="news-view-all">
         <Link href="/posts" className="view-all-btn">
-          View All News
+          Xem tất cả
         </Link>
       </div>
     </section>

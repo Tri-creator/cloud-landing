@@ -1,14 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-
 const menuItems = [
   { label: 'Trang chủ', id: 'home' },
   { label: 'Giải pháp', id: 'why-vcv' },
   { label: 'Dịch vụ', id: 'pricing' },
   { label: 'Đánh giá', id: 'testimonials' },
-  { label: 'Câu hỏi', id: 'faq' },
+  { label: 'Khách hàng', id: 'customers'},
+  { label: 'Sự kiện', id: 'events' },
   { label: 'Tin tức', id: 'news' },
+  { label: 'Câu hỏi', id: 'faq' },
 ]
 
 export default function SiteHeader() {
@@ -58,7 +59,7 @@ export default function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container site-header-inner">
-        <div className="site-logo">Vigilance Cloud Video</div>
+        <img width="200" height="200" src="/clients/8.png" alt="VCV Cloud Camera"></img>
         <button
           className="mobile-menu-btn"
           onClick={() => setOpen(!open)}>{open ? '✕' : '☰'}

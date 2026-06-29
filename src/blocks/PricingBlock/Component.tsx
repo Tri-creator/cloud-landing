@@ -26,14 +26,14 @@ export const PricingBlockComponent: React.FC<PricingBlockType & { disableInnerCo
             onClick={() => setBilling('monthly')}
             className={`billing-btn ${billing === 'monthly' ? 'active' : ''}`}
           >
-            Monthly
+            Hàng tháng
           </button>
           <button
             onClick={() => setBilling('annual')}
             className={`billing-btn ${billing === 'annual' ? 'active' : ''}`}
           >
-            Annual
-            <span className="save-badge">Save 20%</span>
+            Hàng năm
+            <span className="save-badge">Giảm 20%</span>
           </button>
         </div>
 
@@ -45,7 +45,7 @@ export const PricingBlockComponent: React.FC<PricingBlockType & { disableInnerCo
               return (
                 <div key={i} className={`pricing-card ${plan.highlighted ? 'highlighted' : ''}`}>
                   {plan.highlighted && (
-                    <div className="most-popular-badge">Most Popular</div>
+                    <div className="most-popular-badge">Phổ biến nhất</div>
                   )}
                   <div className="plan-header">
                     <h3 className="plan-name">{plan.name}</h3>
@@ -57,7 +57,7 @@ export const PricingBlockComponent: React.FC<PricingBlockType & { disableInnerCo
                     <span className="price-period">/mo</span>
                   </div>
                   {billing === 'annual' && (
-                    <p className="annual-note">Billed annually</p>
+                    <p className="annual-note">Thanh toán hàng năm</p>
                   )}
                   {/* Features list */}
                   {Array.isArray(plan.features) && plan.features.length > 0 && (
