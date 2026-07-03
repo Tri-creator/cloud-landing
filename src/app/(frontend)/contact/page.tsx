@@ -2,7 +2,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import ContactForm from '@/components/ContactForm'
 import SiteHeader from '@/components/SiteHeader'
-import { Facebook, PhoneCall } from "lucide-react";
+import { Facebook, PhoneCall, Instagram, Mail } from "lucide-react";
 export default async function ContactPage() {
   const payload = await getPayload({ config: configPromise })
 
@@ -46,7 +46,21 @@ export default async function ContactPage() {
   >
     <Facebook size={22} />
   </a>
+  <a
+    href="https://www.instagram.com/vigilancecloudvideo"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-social-btn"
+  >
+    <Instagram size={22} />
+  </a>
 
+  <a
+    href="mailto:support@vcloud.vn"
+    className="contact-social-btn"
+  >
+    <Mail size={22} />
+  </a>
   <a
     href="tel:0393979911"
     className="contact-social-btn"
