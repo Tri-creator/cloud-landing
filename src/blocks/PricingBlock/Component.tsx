@@ -41,6 +41,12 @@ export const PricingBlockComponent: React.FC<
           <div className="pricing-grid">
             {displayPlans.map((plan, i) => (
               <div key={i} className={`pricing-card ${plan.highlighted ? 'highlighted' : ''}`}>
+                {plan.highlighted && (
+                  <div className="most-popular-badge">
+                    PHỔ BIẾN NHẤT
+                  </div>
+                )}
+
                 <div className="plan-header">
                   <h3 className="plan-name">{plan.name}</h3>
                 </div>
@@ -76,7 +82,10 @@ export const PricingBlockComponent: React.FC<
                   </ul>
                 )}
 
-                <a href={plan.ctaHref || '#'} className="plan-cta plan-cta-outline">
+                <a
+                  href={plan.ctaHref || '#'}
+                  className={`plan-cta ${plan.highlighted ? 'plan-cta-primary' : 'plan-cta-outline'}`}
+                >
                   {plan.ctaLabel || 'Liên hệ bán hàng'}
                 </a>
               </div>
