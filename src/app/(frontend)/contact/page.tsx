@@ -1,7 +1,8 @@
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import ContactForm from '@/components/ContactForm'
-
+import SiteHeader from '@/components/SiteHeader'
+import { Facebook, PhoneCall } from "lucide-react";
 export default async function ContactPage() {
   const payload = await getPayload({ config: configPromise })
 
@@ -19,6 +20,7 @@ export default async function ContactPage() {
 
   return (
     <main className="contact-page">
+      <SiteHeader/>
       <section className="contact-container">
         <div className="contact-info">
           <h1>Liên hệ VCV VIỆT NAM</h1>
@@ -35,6 +37,23 @@ export default async function ContactPage() {
             <li><strong>SĐT:</strong> 039 397 9911</li>
             <li><strong>Email:</strong> hotro@vcv.vn</li>
           </ul>
+           <div className="contact-socials">
+  <a
+    href="https://www.facebook.com/vigilancecloudvideo"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-social-btn"
+  >
+    <Facebook size={22} />
+  </a>
+
+  <a
+    href="tel:0393979911"
+    className="contact-social-btn"
+  >
+    <PhoneCall size={22} />
+  </a>
+</div>
         </div>
 
         <div className="contact-form-box">
@@ -45,8 +64,27 @@ export default async function ContactPage() {
           ) : (
             <p>Chưa tạo form Contact Form trong Admin.</p>
           )}
+          
         </div>
+       
       </section>
+      {/* Google Map */}
+<section className="contact-map-section">
+  <div className="container">
+    <div className="contact-map">
+      <iframe
+        title="VCV Việt Nam"
+        src="https://www.google.com/maps?q=300/7+Nguyễn+Văn+Lượng,+Phường+16,+Quận+Gò+Vấp,+TP.HCM&output=embed"
+        width="100%"
+        height="420"
+        loading="lazy"
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
+  </div>
+</section>
+
     </main>
   )
 }

@@ -3,7 +3,7 @@ import { getLocale } from '@/i18n/getLocale'
 import { t } from '@/i18n/translations'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
-
+import Image from 'next/image'
 
 // ─── Social icon map ─────────────────────────────────────────────────────────
 
@@ -78,7 +78,7 @@ export async function Footer() {
           {/* Brand */}
           <div className="vcv-footer-brand">
             <Link href="/" className="vcv-footer-logo">
-              <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8 shrink-0">
+              <img width="100" height="100" src="/clients/10.png" alt="VCV Cloud Camera"></img>
                 <rect width="32" height="32" rx="8" fill="url(#footer-logo-grad)" />
                 <path
                   d="M8 20.5l4.5-4.5 3 3 4.5-5.5L24 18"
@@ -94,7 +94,7 @@ export async function Footer() {
                     <stop offset="1" stopColor="#2563eb" />
                   </linearGradient>
                 </defs>
-              </svg>
+              
               <span className="vcv-footer-logo-text">{brandName}</span>
             </Link>
             <p className="vcv-footer-tagline">{tagline}</p>
@@ -105,7 +105,13 @@ export async function Footer() {
             <div className="vcv-footer-links">
               {columns.map((col, colIdx) => (
                 <div key={colIdx} className="vcv-footer-col">
-                  <h4 className="vcv-footer-col-title">{col.title}</h4>
+                  <div className="vcv-footer-title-wrap">
+                    <h4 className="vcv-footer-col-title">{col.title}</h4>
+                    <div className="vcv-footer-divider">
+                      <span className="yellow"></span>
+                      <span className="white"></span>
+                    </div>
+                </div>
                   {col.content && (<div className="vcv-footer-content">{col.content}</div>)}
                   {(col.links || []).map(({ link: linkData }, linkIdx) => (
                     <CMSLink key={linkIdx} className="vcv-footer-link" {...linkData} />

@@ -4,7 +4,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
-
+import SiteHeader from '@/components/SiteHeader'
 export const dynamic = 'force-static'
 export const revalidate = 600
 
@@ -40,6 +40,7 @@ export default async function EventPage({ params: paramsPromise }: Args) {
 
   return (
     <main className="post-hero">
+      <SiteHeader/>
       <section className="container">
         <div className="post-hero-category">EVENT</div>
 

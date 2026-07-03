@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-
+import SiteHeader from '@/components/SiteHeader'
 const videos = [
   {
     title: 'Demo 1',
@@ -22,6 +22,7 @@ export default function DemoPage() {
 
   return (
     <main className="demo-page">
+      <SiteHeader/>
       <section className="demo-layout">
         <div className="demo-left">
           <div className="demo-video-wrapper">

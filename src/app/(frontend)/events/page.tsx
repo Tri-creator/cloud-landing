@@ -3,7 +3,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import Link from 'next/link'
 import { Media } from '@/components/Media'
-
+import SiteHeader from '@/components/SiteHeader'
 export const dynamic = 'force-static'
 export const revalidate = 600
 
@@ -27,9 +27,9 @@ export default async function EventsPage() {
 
   return (
     <main className="all-news-list-page">
+      <SiteHeader/>
       <section className="container">
         <div className="all-news-list-header">
-          <span className="section-badge">EVENTS</span>
           <h1>Tất cả sự kiện</h1>
         </div>
 

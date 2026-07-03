@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 const menuItems = [
   { label: 'Trang chủ', id: 'home' },
   { label: 'Giải pháp', id: 'why-vcv' },
@@ -15,7 +16,19 @@ const menuItems = [
 export default function SiteHeader() {
   const [activeId, setActiveId] = useState('home')
   const [open, setOpen] = useState(false)
+
+  const router = useRouter()
+  const pathname = usePathname()
+
   const scrollToSection = (id: string) => {
+    setOpen(false)
+    setActiveId(id)
+
+    if (pathname !== '/') {
+      router.push(`/#${id}`)
+      return
+    }
+
     const section = document.getElementById(id)
     const header = document.querySelector('.site-header') as HTMLElement | null
 
@@ -28,9 +41,30 @@ export default function SiteHeader() {
       top: sectionTop - headerHeight - 12,
       behavior: 'smooth',
     })
-
-    setActiveId(id)
   }
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+
+    if (hash) {
+      setTimeout(() => {
+        const section = document.getElementById(hash)
+        const header = document.querySelector('.site-header') as HTMLElement | null
+
+        if (!section) return
+
+        const headerHeight = header?.offsetHeight || 0
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY
+
+        window.scrollTo({
+          top: sectionTop - headerHeight - 12,
+          behavior: 'smooth',
+        })
+
+        setActiveId(hash)
+      }, 300)
+    }
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +76,7 @@ export default function SiteHeader() {
 
         const rect = section.getBoundingClientRect()
 
-        if (rect.top <= 140 && rect.bottom >= 140) {
+        if (rect.top <= 150 && rect.bottom >= 150) {
           current = item.id
         }
       })
@@ -60,24 +94,22 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="container site-header-inner">
         <img width="200" height="200" src="/clients/8.png" alt="VCV Cloud Camera"></img>
-        <button
-          className="mobile-menu-btn"
-          onClick={() => setOpen(!open)}>{open ? '✕' : '☰'}
+
+        <button className="mobile-menu-btn" onClick={() => setOpen(!open)}>
+          {open ? '✕' : '☰'}
         </button>
+
         <nav className={`site-nav ${open ? 'show' : ''}`}>
-         {menuItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => {
-               scrollToSection(item.id)
-                setOpen(false)
-            }}
-           className={activeId === item.id ? 'active' : ''}
-    >
-          {item.label}
-        </button>
-       ))}
-      </nav>
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={activeId === item.id ? 'active' : ''}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
       </div>
     </header>
   )

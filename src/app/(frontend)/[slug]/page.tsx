@@ -14,13 +14,15 @@ import type { Locale } from '@/i18n/config'
 import { getLocale } from '@/i18n/getLocale'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
+
 import { NewsSection } from '@/blocks/NewsSection/Component'
 import { CustomerLogos } from '@/blocks/CustomerLogos/Component'
 import SiteHeader from '@/components/SiteHeader'
-import { FAQBlock } from '@/blocks/FAQBlock/config'
 import { EventSection } from '@/blocks/EventsSection/Component'
+
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
+
   const pages = await payload.find({
     collection: 'pages',
     draft: false,
@@ -33,9 +35,7 @@ export async function generateStaticParams() {
   })
 
   const params = pages.docs
-    ?.filter((doc) => {
-      return doc.slug !== 'home'
-    })
+    ?.filter((doc) => doc.slug !== 'home')
     .map(({ slug }) => {
       return { slug }
     })
@@ -53,9 +53,10 @@ export default async function Page({ params: paramsPromise }: Readonly<Args>) {
   const { isEnabled: draft } = await draftMode()
   const { slug = 'home' } = await paramsPromise
   const locale = await getLocale()
-  // Decode to support slugs with special characters
+
   const decodedSlug = decodeURIComponent(slug)
   const url = '/' + decodedSlug
+
   let page: RequiredDataFromCollectionSlug<'pages'> | null
 
   page = await queryPageBySlug({
@@ -63,8 +64,7 @@ export default async function Page({ params: paramsPromise }: Readonly<Args>) {
     locale,
   })
 
-  // Remove this code once your website is seeded
-  if (!page && slug === 'home') {
+  if (!page && decodedSlug === 'home') {
     page = homeStatic
   }
 
@@ -73,21 +73,35 @@ export default async function Page({ params: paramsPromise }: Readonly<Args>) {
   }
 
   const { hero, layout } = page
+  const isHomePage = decodedSlug === 'home'
 
   return (
     <article>
-       <SiteHeader />
+      <SiteHeader />
+
       <PageClient />
-      {/* Allows redirects for valid pages too */}
+
       <PayloadRedirects disableNotFound url={url} />
+
       {draft && <LivePreviewListener />}
+
       <RenderHero {...hero} />
-      
-      <RenderBlocks blocks={layout.filter((block) => block.blockType !== 'faq')} />
-      <CustomerLogos />
-      <EventSection/>
-      <NewsSection />
-      <RenderBlocks blocks={layout.filter((block) => block.blockType === 'faq')} />
+
+      {isHomePage ? (
+        <>
+          <RenderBlocks blocks={layout.filter((block) => block.blockType !== 'faq')} />
+
+          <CustomerLogos />
+
+          <EventSection />
+
+          <NewsSection />
+
+          <RenderBlocks blocks={layout.filter((block) => block.blockType === 'faq')} />
+        </>
+      ) : (
+        <RenderBlocks blocks={layout} />
+      )}
     </article>
   )
 }
@@ -95,8 +109,9 @@ export default async function Page({ params: paramsPromise }: Readonly<Args>) {
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = 'home' } = await paramsPromise
   const locale = await getLocale()
-  // Decode to support slugs with special characters
+
   const decodedSlug = decodeURIComponent(slug)
+
   const page = await queryPageBySlug({
     slug: decodedSlug,
     locale,

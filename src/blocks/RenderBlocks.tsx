@@ -48,7 +48,7 @@ export const RenderBlocks: React.FC<{
               // Cloud camera blocks don't need the my-16 wrapper
               const isLandingBlock = ['heroBanner', 'features', 'productsShowcase', 'pricing', 'testimonialsSection', 'faq'].includes(blockType)
               return (
-                <div className={isLandingBlock ? '' : 'my-16'} key={index}>
+                <div className={isLandingBlock ? '' : 'my-16 page-block-center'} key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>

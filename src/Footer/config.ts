@@ -20,7 +20,7 @@ export const Footer: GlobalConfig = {
               name: 'brandName',
               type: 'text',
               localized: true,
-              defaultValue: 'VCV Cloud',
+              defaultValue: 'VCV CLOUD',
               admin: { description: 'Site name shown next to the logo.' },
             },
             {

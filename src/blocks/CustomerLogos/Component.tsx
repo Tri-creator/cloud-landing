@@ -31,10 +31,7 @@ export const CustomerLogos = () => {
     <section id="customers" className="customer-logos-section">
       <div className="container">
         <div className="section-header text-center mb-12">
-          <span className="section-badge mb-4">Customers</span>
-          <h2 className="section-heading mb-4">
-            KHÁCH HÀNG CỦA VCV
-          </h2>
+          <span className="section-badge mb-4">KHÁCH HÀNG</span>
         </div>
 
         <div className="customer-slider">

@@ -33,7 +33,7 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
     // Features
     {
       blockType: 'features',
-      badge: 'Why VCV',
+      badge: 'GIẢI PHÁP',
       heading: 'Xây dựng phù hợp với lối sống và công việc của bạn.',
       subheading:
         'Mọi tính năng đều được thiết kế để mang lại cho bạn sự an tâm tuyệt đối — dù bạn đang ở nhà, ở phòng văn phòng hay ở bất cứ đâu trên thế giới.',
@@ -92,7 +92,7 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
     // Pricing
     {
       blockType: 'pricing',
-      badge: 'CLOUD PLAN',
+      badge: 'GÓI DỊCH VỤ',
       heading: 'Giá cả đơn giản, minh bạch',
       subheading: 'Bắt đầu miễn phí, nâng cấp bất cứ lúc nào. Không phí ẩn, không ràng buộc hợp đồng.',
       plans: [
@@ -152,7 +152,7 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
     // Testimonials
     {
       blockType: 'testimonialsSection',
-      badge: 'CUSTOMERS STORIES',
+      badge: 'CẢM NHẬN KHÁCH HÀNG',
       heading: 'Được hàng triệu gia đình và doanh nghiệp tin dùng.',
       subheading: 'Đừng chỉ tin lời chúng tôi — hãy lắng nghe ý kiến ​​từ những khách hàng thực tế của VCV.',
       showAll: false,
@@ -161,8 +161,8 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
     // FAQ
     {
       blockType: 'faq',
-      badge: 'FAQ',
-      heading: 'Câu hỏi thường gặp',
+      badge: 'CÂU HỎI ',
+      heading: '',
       subheading: 'Tất cả những gì bạn cần biết về VCV Cloud Camera.',
       items: [
         {

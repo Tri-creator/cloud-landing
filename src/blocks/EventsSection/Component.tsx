@@ -25,8 +25,7 @@ export const EventSection = async () => {
     <section id="events" className="events-section">
       <div className="container">
         <div className="section-header text-center mb-12">
-          <span className="section-badge mb-4">Events</span>
-          <h2 className="section-heading mb-4">Sự kiện</h2>
+          <span className="section-badge mb-4">SỰ KIỆN</span>
         </div>
 
         <EventCarousel events={events.docs} />

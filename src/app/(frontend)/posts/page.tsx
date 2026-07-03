@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Media } from '@/components/Media'
 import React from 'react'
 import PageClient from './page.client'
-
+import SiteHeader from '@/components/SiteHeader'
 export const dynamic = 'force-static'
 export const revalidate = 600
 
@@ -30,11 +30,11 @@ export default async function Page() {
 
   return (
     <main className="all-news-list-page">
+      <SiteHeader/>
       <PageClient />
 
       <section className="container">
         <div className="all-news-list-header">
-          <span className="section-badge">NEWS</span>
           <h1>Tất cả tin tức</h1>
         </div>
 

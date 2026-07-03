@@ -24,9 +24,7 @@ export const NewsSection = async () => {
     <section id="news" className="news-section">
       <div className="container">
         <div className="section-header text-center mb-12">
-          <span className="section-badge mb-4">News</span>
-          <h2 className="section-heading mb-4">TIN TỨC</h2>
-          <p className="section-subheading"></p>
+          <span className="section-badge mb-4">TIN TỨC</span>
         </div>
         
         <NewsCarousel posts={posts.docs} />
