@@ -1141,10 +1141,7 @@ html {
   }
 }
 
-.pricing-section {
-  padding-top: 1px;
-  padding-bottom: 10px;
-}
+
 .faq-section {
   padding-top: 10px;;
 }
@@ -2157,4 +2154,18 @@ html {
 .contact-social-btn svg{
     width:22px;
     height:22px;
+}
+.plan-feature-item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:12px 0;
+}
+
+.feature-check{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+    margin-top:2px;
+    color:#0F172A;
 }
