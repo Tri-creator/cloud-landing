@@ -1236,6 +1236,7 @@ html {
 .customer-slider {
   position: relative;
   width: 100%;
+  margin-bottom: 70px;
 }
 
 .customer-slider-viewport {
