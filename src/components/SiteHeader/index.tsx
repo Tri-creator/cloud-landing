@@ -93,7 +93,7 @@ export default function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container site-header-inner">
-        <img width="200" height="200" src="/clients/8.png" alt="VCV Cloud Camera"></img>
+        <img width="170" height="170" src="/clients/8.png" alt="VCV Cloud Camera"></img>
 
         <button className="mobile-menu-btn" onClick={() => setOpen(!open)}>
           {open ? '✕' : '☰'}
