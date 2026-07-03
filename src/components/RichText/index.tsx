@@ -28,18 +28,23 @@ type NodeTypes =
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const { value, relationTo } = linkNode.fields.doc!
+
   if (typeof value !== 'object') {
     throw new Error('Expected value to be an object')
   }
+
   const slug = value.slug
+
   return relationTo === 'posts' ? `/posts/${slug}` : `/${slug}`
 }
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
   ...defaultConverters,
   ...LinkJSXConverter({ internalDocToHref }),
+
   blocks: {
     banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
+
     mediaBlock: ({ node }) => (
       <MediaBlock
         className="col-start-1 col-span-3"
@@ -50,7 +55,9 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
         disableInnerContainer={true}
       />
     ),
+
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
+
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
   },
 })
@@ -63,6 +70,7 @@ type Props = {
 
 export default function RichText(props: Props) {
   const { className, enableProse = true, enableGutter = true, ...rest } = props
+
   return (
     <ConvertRichText
       converters={jsxConverters}
@@ -71,7 +79,10 @@ export default function RichText(props: Props) {
         {
           container: enableGutter,
           'max-w-none': !enableGutter,
-          'mx-auto prose md:prose-md dark:prose-invert': enableProse,
+
+          // Căn giữa nội dung Admin Page
+          'mx-auto max-w-4xl prose prose-lg dark:prose-invert prose-headings:text-center prose-p:text-left':
+            enableProse,
         },
         className,
       )}
