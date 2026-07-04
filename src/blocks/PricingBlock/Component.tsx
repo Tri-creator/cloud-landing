@@ -95,15 +95,13 @@ export const PricingBlockComponent: React.FC<
             )}
 
             <div className="pricing-viewport">
-              <div
-                className={`pricing-grid pricing-grid-animated ${
-                  animate
-                    ? direction === 'next'
-                      ? 'pricing-slide-out-left'
-                      : 'pricing-slide-out-right'
-                    : 'pricing-slide-in'
-                }`}
-              >
+              <div className={`pricing-grid pricing-grid-animated ${visiblePlans.length === 2 ? 'pricing-grid-two' : ''} ${animate
+                ? direction === 'next'
+                ? 'pricing-slide-out-left'
+                : 'pricing-slide-out-right'
+                : 'pricing-slide-in'
+              }`}
+            >
                 {visiblePlans.map((plan: any, i) => (
                   <div
                     key={`${billing}-${page}-${i}`}

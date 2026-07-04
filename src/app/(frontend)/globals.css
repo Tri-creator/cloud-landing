@@ -2323,3 +2323,8 @@ html {
   opacity: 0;
   transform: translateX(45px);
 }
+.pricing-grid-two {
+  grid-template-columns: repeat(2, 330px);
+  justify-content: center;
+  gap: 36px;
+}
