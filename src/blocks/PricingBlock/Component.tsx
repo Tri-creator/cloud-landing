@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import type { PricingBlock as PricingBlockType } from '@/payload-types'
-
+import { CalendarDays, HardDrive, Star } from 'lucide-react'
 export const PricingBlockComponent: React.FC<
   PricingBlockType & { disableInnerContainer?: boolean }
 > = ({ badge, heading, subheading, plans }) => {
@@ -50,7 +50,9 @@ export const PricingBlockComponent: React.FC<
                 <div className="plan-header">
                   <h3 className="plan-name">{plan.name}</h3>
                 </div>
-
+                <div className="pricing-plan-icon">
+                  {plan.highlighted ? <Star size={30} /> : billing === 'day' ? <CalendarDays size={30} /> : <HardDrive size={30} />}
+                </div>
                 {Array.isArray(plan.features) && (
                   <ul className="plan-features">
                     {plan.features.map((feat, fi) => (

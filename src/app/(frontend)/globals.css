@@ -2159,7 +2159,6 @@ html {
     display:flex;
     align-items:flex-start;
     gap:12px;
-    padding:12px 0;
 }
 
 .feature-check{
@@ -2168,4 +2167,53 @@ html {
     flex-shrink:0;
     margin-top:2px;
     color:#0F172A;
+}
+.plan-header{
+    display:flex;
+    justify-content:center;
+    width:100%; 
+    padding-bottom:8px;
+    border-bottom:2px solid rgb(0, 213, 255);
+}
+.pricing-card {
+  position: relative;
+  overflow: visible;
+  transition: all 0.35s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  border-color: #00d4ff;
+  box-shadow:
+    0 0 0 1px rgba(0, 212, 255, 0.35),
+    0 20px 50px rgba(0, 212, 255, 0.22);
+}
+
+.pricing-plan-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.15);
+}
+
+.pricing-card.highlighted {
+  background: linear-gradient(180deg, #102040, #0b162d);
+  border-color: #00d4ff;
+  box-shadow:
+    0 0 0 1px rgba(0, 212, 255, 0.45),
+    0 0 45px rgba(0, 212, 255, 0.18);
+}
+
+.pricing-card.highlighted .pricing-plan-icon {
+  color: #fff;
+  background: linear-gradient(135deg, #00d4ff, #2563eb);
 }
