@@ -67,12 +67,13 @@ export const PricingBlockComponent: React.FC<
                           cx="12"
                           cy="12"
                           r="10"
-                          stroke="#00AEEF"
+                          fill="#00d4ff"
+                          stroke="#00d4ff"
                           strokeWidth="2"
                         />
                         <path
                           d="M8 12.5L10.8 15.3L16.5 9.6"
-                          stroke="#00AEEF"
+                          stroke="#000000"
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
