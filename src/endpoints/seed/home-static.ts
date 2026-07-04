@@ -102,7 +102,7 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
       description: '',
       price: 0,
       annualPrice: 0,
-      highlighted: false,
+      highlighted: true,
       ctaLabel: 'Liên hệ bán hàng',
       ctaHref: '#contact',
       features: [
@@ -150,7 +150,7 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
       description: '',
       price: 0,
       annualPrice: 0,
-      highlighted: true,
+      highlighted: false,
       ctaLabel: 'Liên hệ bán hàng',
       ctaHref: '#contact',
       features: [
